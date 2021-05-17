@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
 
   void _pickPDF() async {
     try {
-      _pdfPath = await FilePicker.getFilePath(type: FileType.CUSTOM, fileExtension: 'pdf');
+      _pdfPath = await FilePicker.getFilePath(type: FileType.custom, allowedExtensions: ['pdf']);
       setState(() {});
       if (_pdfPath == '') {
         return;

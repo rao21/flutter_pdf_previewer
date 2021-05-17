@@ -25,10 +25,12 @@ static NSString* const kFilePath = @"file:///";
          NSError *error;
          
          BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePathAndDirectory];
-         
-         if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:filePathAndDirectory error:&error]){
-             NSLog(@"PDFPreviewer: Error while removing the cache: %@", error);
-         }else{
+         if(fileExists){
+            BOOL success = [fileManager removeItemAtPath:mainPath error:&error];
+            fileExists.clearCache();
+            if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+         }
+        else{
              NSLog(@"PDFPreviewer: Cache removed with success.");
          }
      });
